@@ -1,0 +1,46 @@
+<div class="row">
+  <div *ngIf="!editMode">
+    <div class="col-md-6 col-sm-6 col-lg-6">
+      <div>{{goal.name}}</div>
+      <div>{{goal.cost | currency:USD:true}}</div>
+      <div>{{goal.date}}</div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6">
+      <button 
+        class="btn btn-default"
+        (click)="edit()">
+        Edit</button>
+      <button 
+        class="btn btn-default"
+        (click)="goalsService.deleteGoal(goal.id)">      
+        Delete</button>
+    </div>
+  </div>
+
+  <div *ngIf="editMode">
+    <div class="col-md-6 col-sm-6 col-lg-6">
+      <input 
+        #a
+        class="form-control"
+        type="text" 
+        [value]="goal.name">
+      <input
+        #b
+        class="form-control" 
+        type="number" 
+        [value]="goal.cost">
+      <input 
+        #c
+        class="form-control"
+        type="text" 
+        [value]="goal.date">
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6">
+      <button 
+        class="btn btn-default"
+        (click)="save(goal,a.value,b.value,c.value)">
+        Save</button>
+    </div>
+  </div>
+    
+</div>

@@ -1,0 +1,47 @@
+<form>
+  <div class="form-group">
+    <label for="">Expense</label>
+    <input #expenseName class="form-control" type="text" placeholder="What are you buying?">
+  </div>
+  <div class="form-group">
+    <label for="">How much does it cost?</label>
+    <input #expenseCost class="form-control" type="number" placeholder="Enter amount">
+  </div>
+  <div class="form-group">
+    <label for="">How often do you buy it?</label>
+    <input 
+      #expenseFrequency 
+      type="text" 
+      placeholder="Number"
+      class="col-sm-4 col-md-4 col-lg-4 col-xl-4 form-control">
+    
+    <div id="frequencyButtons" class="btn-group" role="group" aria-label="...">
+      <p>times per</p>
+      <button 
+        type="button" 
+        class="btn btn-default" 
+        [class.btn-success]="expensesService.selected === 'Day'"
+        (click)="selectFrequency('Day')">
+        Day</button>
+      <button 
+        type="button" 
+        class="btn btn-default" 
+        [class.btn-success]="expensesService.selected === 'Week'"
+        (click)="selectFrequency('Week')">
+        Week</button>
+      <button 
+        type="button" 
+        class="btn btn-default" 
+        [class.btn-success]="expensesService.selected === 'Month'"
+        (click)="selectFrequency('Month')">
+        Month</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="">On a scale of 1 to 5, how painful would it be for you to give this up?</label>
+    <input #expensePain class="form-control" type="number" placeholder="Enter amount">
+  </div>
+  <button class="btn btn-submit"
+    (click)="expensesService.addNewExpense(expenseName, expenseCost, expenseFrequency, expensesService.selected, expensePain)">
+    Add new expense</button>
+</form>

@@ -1,0 +1,33 @@
+
+<table class="table table-hover">
+    <thead class="thead-inverse" *ngIf="expensesService.expenses.length > 0">
+        <tr>
+            <th>Name</th>
+            <th>Cost</th>
+            <th>Frequency</th>
+            <th>Monthly Cost</th>
+            <th>Pain</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let expense of expensesService.expenses">
+            <td>{{expense.name}}</td>
+            <td>{{expense.cost | currency:USD:true}}</td>
+            <td>{{expense.frequency}} per {{expense.timeUnit | lowercase}}</td>
+            <td>{{expense.monthlyCost | currency:USD:true}}</td>
+            <td>
+                <app-pain-meter [expense]="expense"></app-pain-meter>
+            </td>
+
+            <td>
+                <i 
+                    class="glyphicon glyphicon-remove-circle"
+                    (click)="expensesService.deleteExpense(expense.id)"></i>
+            </td>
+        </tr> 
+    </tbody>
+</table>   
+
+
+
